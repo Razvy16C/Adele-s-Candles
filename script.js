@@ -74,22 +74,26 @@ window.setInterval(showRandomPhoto, 5000);
 
 const snowfall = document.querySelector('.snowfall');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const snowflakeImagePath = 'assets/Icons/snowflake.svg';
+const snowflakeCount = 32;
 
-if (!reduceMotion.matches) {
-  const snowflakeCount = 24;
+for (let index = 0; index < snowflakeCount; index += 1) {
+  const snowflake = document.createElement('span');
+  const duration = 28 + Math.random() * 24;
 
-  for (let index = 0; index < snowflakeCount; index += 1) {
-    const snowflake = document.createElement('span');
-    const duration = 24 + Math.random() * 22;
+  snowflake.className = 'snowflake';
+  const flakeImage = document.createElement('img');
+  flakeImage.src = snowflakeImagePath;
+  flakeImage.alt = '';
+  snowflake.append(flakeImage);
+  snowflake.style.setProperty('--snow-x', `${Math.random() * 100}%`);
+  snowflake.style.setProperty('--snow-size', `${5 + Math.random() * 4}px`);
+  snowflake.style.setProperty('--snow-opacity', `${0.45 + Math.random() * 0.4}`);
+  snowflake.style.setProperty('--snow-duration', `${duration}s`);
+  snowflake.style.setProperty('--snow-delay', `${-Math.random() * duration}s`);
+  snowflake.style.setProperty('--snow-drift', `${-35 + Math.random() * 70}px`);
+  snowflake.classList.add('snowflake-static');
+  snowflake.style.setProperty('--snow-y', `${Math.random() * 100}%`);
 
-    snowflake.className = 'snowflake';
-    snowflake.style.setProperty('--snow-x', `${Math.random() * 100}%`);
-    snowflake.style.setProperty('--snow-size', `${1.5 + Math.random() * 2}px`);
-    snowflake.style.setProperty('--snow-opacity', `${0.25 + Math.random() * 0.4}`);
-    snowflake.style.setProperty('--snow-duration', `${duration}s`);
-    snowflake.style.setProperty('--snow-delay', `${-Math.random() * duration}s`);
-    snowflake.style.setProperty('--snow-drift', `${-24 + Math.random() * 48}px`);
-
-    snowfall.append(snowflake);
-  }
+  snowfall.append(snowflake);
 }

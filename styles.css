@@ -33,15 +33,22 @@ body {
 }
 .snowflake {
   position:absolute;
-  top:-6px;
+  top:var(--snow-y, -8px);
   left:var(--snow-x);
   width:var(--snow-size);
   height:var(--snow-size);
-  border-radius:50%;
-  background:rgba(255,248,232,.9);
-  box-shadow:0 0 5px 1px rgba(255,245,220,.2);
+  color:rgba(255,248,232,.9);
   opacity:var(--snow-opacity);
   animation:snow-fall var(--snow-duration) linear var(--snow-delay) infinite
+}
+.snowflake img {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain
+}
+.snowflake-static {
+  animation:none
 }
 @keyframes snow-fall {
   from {
@@ -815,7 +822,7 @@ footer .brand small {
   html {
     scroll-behavior:auto
   }
-  .snowfall {
-    display:none
+  .snowflake {
+    animation:none
   }
 }
