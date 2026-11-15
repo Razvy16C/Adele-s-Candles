@@ -71,3 +71,25 @@ async function showRandomPhoto() {
 }
 
 window.setInterval(showRandomPhoto, 5000);
+
+const snowfall = document.querySelector('.snowfall');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+if (!reduceMotion.matches) {
+  const snowflakeCount = 24;
+
+  for (let index = 0; index < snowflakeCount; index += 1) {
+    const snowflake = document.createElement('span');
+    const duration = 24 + Math.random() * 22;
+
+    snowflake.className = 'snowflake';
+    snowflake.style.setProperty('--snow-x', `${Math.random() * 100}%`);
+    snowflake.style.setProperty('--snow-size', `${1.5 + Math.random() * 2}px`);
+    snowflake.style.setProperty('--snow-opacity', `${0.25 + Math.random() * 0.4}`);
+    snowflake.style.setProperty('--snow-duration', `${duration}s`);
+    snowflake.style.setProperty('--snow-delay', `${-Math.random() * duration}s`);
+    snowflake.style.setProperty('--snow-drift', `${-24 + Math.random() * 48}px`);
+
+    snowfall.append(snowflake);
+  }
+}
